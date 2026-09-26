@@ -1,6 +1,10 @@
 const encoder = new TextEncoder()
 const decoder = new TextDecoder()
 
+function bufferSource(bytes: Uint8Array): ArrayBuffer {
+  return Uint8Array.from(bytes).buffer
+}
+
 export interface EncryptedPayload {
   version: 1
   salt: string
@@ -42,7 +46,7 @@ async function deriveKey(password: string, salt: Uint8Array): Promise<CryptoKey>
   return crypto.subtle.deriveKey(
     {
       name: 'PBKDF2',
-      salt,
+      salt: bufferSource(salt),
       iterations: 200000,
       hash: 'SHA-256',
     },
@@ -61,7 +65,7 @@ export async function encryptJson(
   const iv = crypto.getRandomValues(new Uint8Array(12))
   const key = await deriveKey(password, salt)
   const encrypted = await crypto.subtle.encrypt(
-    { name: 'AES-GCM', iv },
+    { name: 'AES-GCM', iv: bufferSource(iv) },
     key,
     encoder.encode(JSON.stringify(value)),
   )
@@ -86,7 +90,11 @@ export async function decryptJson<T>(
   const iv = base64ToBytes(payload.iv)
   const cipher = base64ToBytes(payload.cipher)
   const key = await deriveKey(password, salt)
-  const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, cipher)
+  const decrypted = await crypto.subtle.decrypt(
+    { name: 'AES-GCM', iv: bufferSource(iv) },
+    key,
+    bufferSource(cipher),
+  )
 
   return JSON.parse(decoder.decode(decrypted)) as T
 }

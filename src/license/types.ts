@@ -26,11 +26,11 @@ export type LicenseErrorCode =
   | 'UNSUPPORTED'
 
 export class LicenseError extends Error {
-  constructor(
-    public readonly code: LicenseErrorCode,
-    message: string,
-  ) {
+  readonly code: LicenseErrorCode
+
+  constructor(code: LicenseErrorCode, message: string) {
     super(message)
+    this.code = code
     this.name = 'LicenseError'
   }
 }

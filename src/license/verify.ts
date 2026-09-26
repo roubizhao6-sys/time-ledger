@@ -3,6 +3,10 @@ import { LicenseError, type LicensePayload } from './types'
 
 const SUPPORTED_PLANS = new Set(['monthly', 'yearly', 'family'])
 
+function bufferSource(bytes: Uint8Array): ArrayBuffer {
+  return Uint8Array.from(bytes).buffer
+}
+
 export async function verifyLicense(
   code: string,
   deviceId: string,
@@ -35,8 +39,8 @@ export async function verifyLicense(
   const valid = await crypto.subtle.verify(
     { name: 'ECDSA', hash: 'SHA-256' },
     publicKey,
-    base64UrlToBytes(parts[1]),
-    base64UrlToBytes(parts[0]),
+    bufferSource(base64UrlToBytes(parts[1])),
+    bufferSource(base64UrlToBytes(parts[0])),
   )
 
   if (!valid) {

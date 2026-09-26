@@ -1,3 +1,13 @@
+import { HashRouter } from 'react-router-dom'
+import { AppRoutes } from './app/routes'
+import { VaultProvider } from './state/VaultContext'
+
 export default function App() {
-  return <main className="app-shell">时光存折</main>
+  return (
+    <HashRouter>
+      <VaultProvider>
+        <AppRoutes />
+      </VaultProvider>
+    </HashRouter>
+  )
 }

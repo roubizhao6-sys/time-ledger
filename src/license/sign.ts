@@ -1,4 +1,8 @@
 import { bytesToBase64Url, encodeUtf8 } from './encoding'
+
+function bufferSource(bytes: Uint8Array): ArrayBuffer {
+  return Uint8Array.from(bytes).buffer
+}
 import type { LicensePayload, SignableLicensePayload } from './types'
 
 export async function signLicense(
@@ -21,7 +25,7 @@ export async function signLicense(
   const signature = await crypto.subtle.sign(
     { name: 'ECDSA', hash: 'SHA-256' },
     privateKey,
-    encodeUtf8(payloadJson),
+    bufferSource(encodeUtf8(payloadJson)),
   )
 
   return `${bytesToBase64Url(encodeUtf8(payloadJson))}.${bytesToBase64Url(
