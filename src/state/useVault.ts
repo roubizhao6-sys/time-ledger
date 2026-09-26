@@ -1,1 +1,4 @@
-export { useVaultContext as useVault } from './VaultContext'
+export {
+  FreeLimitError,
+  useVaultContext as useVault,
+} from './VaultContext'
