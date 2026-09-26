@@ -1,4 +1,5 @@
 import { ActivationForm } from '../license/ActivationForm'
+import { ContactCard } from '../components/ContactCard'
 
 const plans = [
   {
@@ -51,6 +52,7 @@ export function PricingPage() {
       </div>
 
       <ActivationForm />
+      <ContactCard />
     </section>
   )
 }

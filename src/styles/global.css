@@ -441,3 +441,9 @@ p { line-height: 1.7; }
 .policy-page h2 { margin-bottom: .35rem; }
 .policy-page p { color: #526054; }
 @media (max-width: 640px) { .settings-grid { grid-template-columns: 1fr; } .danger-zone { display: grid; } }
+
+.contact-card { display: grid; grid-template-columns: 1fr 190px; gap: 1.2rem; align-items: center; margin-top: 1rem; padding: 1.3rem; border: 1px solid rgba(31,90,69,.14); border-radius: 22px; background: #fffaf0; }
+.contact-card h2 { margin-bottom: .3rem; }
+.contact-card p { color: #526054; }
+.contact-card img { width: 100%; padding: 8px; border-radius: 18px; background: #fff; }
+@media (max-width: 640px) { .contact-card { grid-template-columns: 1fr; } .contact-card img { width: min(240px, 100%); } }
