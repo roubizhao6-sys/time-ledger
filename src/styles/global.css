@@ -447,3 +447,7 @@ p { line-height: 1.7; }
 .contact-card p { color: #526054; }
 .contact-card img { width: 100%; padding: 8px; border-radius: 18px; background: #fff; }
 @media (max-width: 640px) { .contact-card { grid-template-columns: 1fr; } .contact-card img { width: min(240px, 100%); } }
+
+.shared-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1rem 0; }
+.toggle-row { display: flex; align-items: center; gap: .55rem; color: #526054; font-weight: 850; }
+.toggle-row input { width: 18px; height: 18px; }

@@ -1,4 +1,4 @@
-import { BellRing, Download, LockKeyhole, Trash2 } from 'lucide-react'
+import { BellRing, Download, LockKeyhole, Trash2, UsersRound } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { downloadReminderIcs } from '../reminders/buildReminderIcs'
 import { useVault } from '../state/useVault'
@@ -35,6 +35,11 @@ export function SettingsPage() {
           <LockKeyhole size={22} />
           <strong>订阅与激活</strong>
           <span>¥9.9/月、¥79/年、¥19.9/月共享版</span>
+        </Link>
+        <Link className="settings-card" to="/shared">
+          <UsersRound size={22} />
+          <strong>共享空间</strong>
+          <span>给伴侣或家人的共同记忆</span>
         </Link>
         <Link className="settings-card" to="/backup">
           <Download size={22} />

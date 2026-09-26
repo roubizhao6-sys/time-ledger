@@ -20,6 +20,7 @@ export function NewEntryPage() {
   const [memoryDate, setMemoryDate] = useState(todayInputValue())
   const [tags, setTags] = useState('')
   const [imageDataUrl, setImageDataUrl] = useState<string>()
+  const [shared, setShared] = useState(false)
   const [error, setError] = useState('')
   const [saving, setSaving] = useState(false)
 
@@ -38,6 +39,7 @@ export function NewEntryPage() {
         memoryDate: new Date(`${memoryDate}T12:00:00`).toISOString(),
         tags: tags.split(/[,，]/),
         imageDataUrl,
+        shared,
       })
       navigate('/timeline')
     } catch (saveError) {
@@ -110,6 +112,11 @@ export function NewEntryPage() {
 
       <span className="field-label">照片</span>
       <ImageUploader value={imageDataUrl} onChange={setImageDataUrl} />
+
+      <label className="toggle-row">
+        <input type="checkbox" checked={shared} onChange={(event) => setShared(event.target.checked)} />
+        放进共享空间
+      </label>
 
       {error && <p className="form-error">{error}</p>}
 
