@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local-only secrets and generated data
+private/
+.env
+.env.local
+dist/
