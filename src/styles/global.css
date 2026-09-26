@@ -428,3 +428,16 @@ p { line-height: 1.7; }
 .activation-message.success { color: #1f5a45; }
 @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+.settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
+.settings-card { display: grid; gap: .3rem; padding: 1.1rem; border: 1px solid rgba(31,90,69,.13); border-radius: 18px; color: inherit; background: #fffaf0; text-align: left; text-decoration: none; }
+.settings-card span { color: #6d7669; }
+.danger-zone { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; padding: 1rem 1.2rem; border: 1px solid rgba(180,61,52,.2); border-radius: 18px; background: rgba(180,61,52,.05); }
+.danger-zone p { margin: .2rem 0 0; color: #7d605c; }
+.danger-button { display: inline-flex; align-items: center; gap: .35rem; padding: .7rem .9rem; border: 1px solid rgba(180,61,52,.25); border-radius: 999px; color: #b43d34; background: #fff; }
+.policy-page { max-width: 780px; margin: 0 auto; }
+.policy-page h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 1.05; }
+.policy-page section { margin: 1.6rem 0; }
+.policy-page h2 { margin-bottom: .35rem; }
+.policy-page p { color: #526054; }
+@media (max-width: 640px) { .settings-grid { grid-template-columns: 1fr; } .danger-zone { display: grid; } }
