@@ -1,32 +1,77 @@
-# React + TypeScript + Vite
+# 时光存折
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+线上地址：https://roubizhao6-sys.github.io/time-ledger/
 
-Currently, two official plugins are available:
+## 产品
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> 每月存一点，年底得到一本只属于你的回忆册。
 
-## React Compiler
+时光存折是一个面向中国大陆年轻人的本地优先记忆服务系统。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+用户每月存入一张照片、一句话和一个心情，系统自动生成：
 
-## Expanding the Oxlint configuration
+- 时间轴
+- 连续记录
+- 月度小结
+- 年度数字回忆册
+- 加密备份文件
+- 12个月提醒日历
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 为什么不是一次性产品
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- 每月都有一次存入动作
+- 记录越多，用户越不愿意迁移
+- 年度册是一年后的阶段性大回报
+- 情侣和家庭可以共享加密备份
+- 月费和年费足够低，不需要每次重新做高价决策
+
+## 价格
+
+- 免费版：最多3条记忆
+- 月度版：¥9.9/月
+- 年度版：¥79/年
+- 双人/家庭版：¥19.9/月
+
+## 本地优先
+
+MVP默认不上传用户内容到服务器：
+
+- 数据保存在浏览器 IndexedDB
+- 图片在本地压缩
+- 备份使用 AES-GCM 加密
+- 跨设备通过加密文件导入导出
+- 用户可以删除全部本地数据
+
+## 开发
+
+```bash
+npm install --legacy-peer-deps
+npm run dev
+npm run test:run
+npm run build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 激活码
+
+私钥保存在本地 `private/` 目录，已被 `.gitignore` 忽略。
+
+生成密钥：
+
+```bash
+npm run license:keygen
+```
+
+签发激活码：
+
+```bash
+npm run license:issue -- --device <设备ID> --plan yearly --expires 2027-09-27
+```
+
+客户在网站的“订阅与激活”页面输入设备ID和激活码。
+
+## 当前限制
+
+- 个人微信转账不能自动确认付款
+- 跨设备自动同步需要未来接入后端
+- 自动续费需要合法商户支付接口
+- 年度册目前导出为单文件HTML，可打印为PDF
